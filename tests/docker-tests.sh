@@ -10,7 +10,8 @@ if [ -z "$(ls -A data)" ]; then
 else
    echo "NOT EMPTY";
 fi
+rm -rf data;
 docker stop my-hexo-blog;
 }
 
-mounting_volume();
+mounting_volume
