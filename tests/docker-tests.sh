@@ -13,4 +13,4 @@ fi
 docker stop my-hexo-blog;
 }
 
-mounting_volume();
+mounting_volume
