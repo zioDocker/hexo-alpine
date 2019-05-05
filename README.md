@@ -2,6 +2,8 @@ hexo-alpine
 ---------------
 Docker image for Hexo node js blog
 
+![](https://travis-ci.com/MaurizioBrioschi/hexo-alpine.svg?branch=master)
+
 ## Build
 ```
 docker image build --build-arg UID=$(id -u) --build-arg=$(id -g) -t hexo-alpine:latest .
