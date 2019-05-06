@@ -27,12 +27,10 @@ RUN apk add --no-cache shadow sudo && \
 # install hexo
 RUN npm install hexo-cli -g
 
-WORKDIR /home/hexo
-
 USER hexo
+WORKDIR /home/hexo
 RUN hexo init blog && npm install
 
-VOLUME /home/hexo/blog
 WORKDIR /home/hexo/blog
 
 EXPOSE ${PORT}
