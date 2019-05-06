@@ -3,6 +3,7 @@
 docker_run_no_mount()    {
     printf "\n docker_run_no_mount START";
     docker run -d --name=my-hexo-blog-no-mount -p 4000:4000 hexo-alpine:latest;
+    docker exec -it my-hexo-blog-no-mount hexo new my-test-post;
     docker rm my-hexo-blog-no-mount -f;
     printf "\n docker_run_no_mount OK";
 }
