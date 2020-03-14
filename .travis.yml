@@ -4,5 +4,5 @@ services:
   - docker
 
 script:
-  - docker image build --build-arg UID=$(id -u) --build-arg=$(id -g) -t hexo-alpine:latest .
+  - docker image build --build-arg UID=$(id -u) --build-arg GID=$(id -g) -t hexo-alpine:latest .
   - ./tests/docker-tests.sh

@@ -1,6 +1,6 @@
 hexo-docker-alpine
 ---------------
-![](https://travis-ci.com/MaurizioBrioschi/hexo-alpine.svg?branch=master)
+![](https://travis-ci.com/ridesoft/hexo-alpine.svg?branch=master)
 
 Light docker environment for the [Hexo](https://hexo.io) project
 
@@ -10,17 +10,21 @@ generates static files with a beautiful theme in seconds. (cit. from Hexo docume
 
 ## Build
 ```
-docker image build --build-arg UID=$(id -u) --build-arg=$(id -g) -t hexo-alpine:latest .
+docker image build --build-arg UID=$(id -u) --build-arg GID=$(id -g) -t hexo-alpine:latest .
 ```
 
-## Run image
+### Init your blog
 ```
-docker run --rm -d --name=my-hexo-blog -p 4000:4000 hexo-alpine:latest 
+docker run --rm --name=my-hexo-blog -p 4000:4000 -v $(pwd)/hexo:/home/hexo hexo-alpine:latest sh -c "hexo init {my-blog} && npm install"
 ```
 
-## executing hexo
+### Run your blog
 ```
-docker exec -it my-hexo-blog sh -c "hexo new my-first-post"
+docker run --rm --name=my-hexo-blog -p 4000:4000 -v $(pwd)/hexo:/home/hexo hexo-alpine:latest sh -c "cd {my-blog} && hexo server"
+```
+Now you can start working to your post, i.e.
+```
+docker exec -it my-hexo-blog sh -c "cd blog && hexo new my-article"
 ```
 
 ## Stop blog

@@ -5,7 +5,6 @@ ARG UID=1000
 ARG GID=1000
 ARG A_PORT=4000
 ENV PORT=${A_PORT}
-
 EXPOSE ${PORT}
 
 RUN apk add python  && rm -rf /var/cache/apk/*
@@ -25,18 +24,12 @@ RUN apk --update --no-cache add git shadow sudo && \
     chmod 0440 /etc/sudoers.d/hexo
 
 # install hexo
+
 RUN npm install hexo-cli -g
+EXPOSE ${PORT}
+VOLUME /home/hexo
 
 WORKDIR /home/hexo
-
 USER hexo
-RUN hexo init blog
-WORKDIR /home/hexo/blog
-RUN npm install
-
-VOLUME /home/hexo/blog
-
-EXPOSE ${PORT}
-
 CMD ["hexo", "server"]
 
