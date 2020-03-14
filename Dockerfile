@@ -10,7 +10,7 @@ EXPOSE ${PORT}
 
 RUN apk add python  && rm -rf /var/cache/apk/*
 
-RUN apk add --no-cache shadow sudo && \
+RUN apk --update --no-cache add git shadow sudo && \
     if [ -z "`getent group $GID`" ]; then \
       addgroup -S -g $GID hexo; \
     else \
@@ -30,10 +30,11 @@ RUN npm install hexo-cli -g
 WORKDIR /home/hexo
 
 USER hexo
-RUN hexo init blog && npm install
+RUN hexo init blog
+WORKDIR /home/hexo/blog
+RUN npm install
 
 VOLUME /home/hexo/blog
-WORKDIR /home/hexo/blog
 
 EXPOSE ${PORT}
 
