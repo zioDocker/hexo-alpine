@@ -8,7 +8,7 @@ run_blog()  {
   docker run --rm -d --name=my-hexo-blog -p 4000:4000 -v $(pwd)/hexo:/home/hexo hexo-alpine:latest sh -c "cd blog && hexo server"
   if [ -z "$(ls -A hexo/blog)" ]; then
    echo "DIRECTORY EMPTY";
-    ls -altr data;
+    ls -altr hexo/blog;
     exit 1;
   else
     echo "NOT EMPTY";
